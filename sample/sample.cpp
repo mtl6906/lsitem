@@ -24,5 +24,6 @@ int main()
 	Int i;
 	i.parseFrom("123465");
 	cout << i.toString() << endl;
+	i.parseFrom("1234.3");
 	return 0;
 }

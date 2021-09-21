@@ -6,7 +6,7 @@ aux_source_directory(sample SRC_SAMPLE)
 include_directories(include)
 add_executable(testcase ${SRC_SAMPLE} ${SRC})
 add_library(lsitem SHARED ${SRC})
-target_link_libraries(testcase lsexception )
+target_link_libraries(testcase lsexception lslogger lstime)
 
 install(DIRECTORY include/ls DESTINATION include)
 install(TARGETS lsitem DESTINATION lib)

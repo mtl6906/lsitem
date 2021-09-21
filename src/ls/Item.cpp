@@ -1,5 +1,6 @@
 #include "ls/Item.h"
 #include "ls/Exception.h"
+#include "ls/DefaultLogger.h"
 
 using namespace std;
 
@@ -13,7 +14,11 @@ namespace ls
 
     void Item::check(const string &text)
     {
-        if(text != toString())
-            throw Exception(Exception::LS_EFORMAT);
+	string str = toString();
+        if(text != str)
+	{
+		LOGGER(ls::ERROR) << text << " is different with " << str << ls::endl;
+		throw Exception(Exception::LS_EFORMAT);
+	}
     }
 }
