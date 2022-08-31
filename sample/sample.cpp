@@ -1,14 +1,17 @@
 #include "ls/Item.h"
-#include "iostream"
+#include "ls/DefaultLogger.h"
+#include "ls/Exception.h"
 
 using namespace std;
+using namespace ls;
 
 class Int : public ls::Item
 {
 	public:
-		void parse(const string &text) override
+		int parse(const string &text) override
 		{
 			number = stoi(text);
+			return Exception::LS_OK;
 		}
 
 		string toString()
@@ -22,8 +25,23 @@ class Int : public ls::Item
 int main()
 {
 	Int i;
-	i.parseFrom("123465");
-	cout << i.toString() << endl;
-	i.parseFrom("1234.3");
+	if(i.parseFrom("123465") < 0)
+	{
+		LOGGER(ls::INFO) << "parse failed" << ls::endl;
+	}
+	else
+	{
+		LOGGER(ls::INFO) << i.toString() << ls::endl;
+	}
+
+	if(i.parseFrom("1234.3") < 0)
+	{
+		LOGGER(ls::INFO) << "parse from failed" << ls::endl;
+	}
+	else
+	{
+		LOGGER(ls::INFO) << i.toString() << ls::endl;
+	}
+
 	return 0;
 }

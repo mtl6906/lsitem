@@ -9,10 +9,10 @@ namespace ls
     {
         public:
             virtual std::string toString() = 0;
-            void parseFrom(const std::string& text);
+            int parseFrom(const std::string& text);
         protected:
-            virtual void parse(const std::string& text) = 0;
-            void check(const std::string& text);
+            virtual int parse(const std::string& text) = 0;
+            int check(const std::string& text);
     };
 }
 
